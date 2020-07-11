@@ -1,0 +1,94 @@
+h1, p {
+  font-family: Lato;
+}
+h1, p {
+  font-family: Roboto;
+}
+.text {
+  text-transform: capitalize;
+}
+      
+#customization {
+  display: table;
+  margin: 0 auto;
+}
+
+.animate {
+  display: table-cell;
+  padding: 10px;
+}
+
+.control-pane .dialog-target {
+  min-height: 350px;
+}
+
+body{
+  padding : 20px
+}
+
+.title{
+  text-align: center;
+  border-bottom: 1px dashed lightgray;
+  margin-bottom: 20px;
+  font-size: 40px;
+  text-decoration: underline;
+  color: #e3165b;
+}
+
+.buttonStyle{
+  margin: 10px;
+  font-size: 30px;
+}
+
+.imageStyle {
+  margin: auto;
+  display: block;
+}
+
+.remainingCount{
+  font-size:  15px;
+  float: left;
+}
+
+.time{
+  float: right;
+  font-size: 15px;
+}
+
+.radiobutton-control {
+  margin: 5% 0 5% 40%;
+}
+
+/* custom code start */
+@media only screen and (max-width: 700px) {
+  .radiobutton-control {
+      margin-left: 35%;
+      margin-top: 8%;
+  }
+
+  .control-section {
+      min-height: 200px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .radiobutton-control {
+      margin-top: 20%;
+      margin-left: 21%;
+      margin-bottom: 27%;
+  }
+}
+
+.control-section .row {
+  margin: 20px 0;
+}
+
+.radiobutton-control h4 {
+  font-size: 18px;
+}
+
+.e-bigger .radiobutton-control h4 {
+  font-size: 20px;
+}
+
+/* custom code end */
