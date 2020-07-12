@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@syncfusion/ej2-react-popups": "^18.2.44",
-    "jquery": "^3.5.1",
+    "@syncfusion/ej2-react-popups": "18.2.44",
+    "jquery": "3.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "underscore": "^1.10.2"
+    "underscore": "1.10.2",
+    "uuidv4": "^6.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -5,6 +5,7 @@ import config from './config.json'
 import _ from 'underscore'
 import { DialogComponent } from '@syncfusion/ej2-react-popups';
 import $ from 'jquery'
+import { uuid } from 'uuidv4';
 // import { QuestionAnswers } from './questionAnswers';
 
 
@@ -32,7 +33,6 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    console.log('in did mount')
     var that = this
      $.ajax({url: "https://api.github.com/repos/mngagan/react-quiz-working/git/trees/master?recursive=1", success: function(result){
     that.handleResponse({result})
@@ -59,7 +59,6 @@ class App extends Component {
 
   }
   handleResponse = (arg) => {
-    console.log('result', arg)
     let {tree} = arg.result
     let images = _.filter(tree , (obj) => {return obj.type =='blob' && obj.path.split('/')[0] == 'QUIZE' } )
     let imagePaths = _.pluck(images, 'path')
@@ -72,7 +71,6 @@ class App extends Component {
       })
     })
 
-    console.log(result)
     this.setState({
       quiz : result, 
     })
@@ -89,7 +87,7 @@ class App extends Component {
     return result
   }
 
-  dialogClose() {
+  dialogClose = () => {
     let quiz = this.state.quiz
     quiz = quiz.map((arg, index) => {
       if (arg.id === this.state.activeId) {
@@ -102,11 +100,11 @@ class App extends Component {
 
   }
   renderButtons = () => {
-    console.log('in render buttons')
+    console.log(' in render buttons')
     return (
       <div style={{ textAlign: "center" }}>
         {this.state.quiz.map((val, index) => {
-          return <button key={_.random(99999) + ''} className='e-control e-btn e-outline e-primary buttonStyle' onClick={() => { this.handleButtonClick({ id: val.id }) }} id={val.id} disabled={!val.active}>{val.id}</button>
+          return <button key={uuid()} className='e-control e-btn e-outline e-primary buttonStyle' onClick={() => { this.handleButtonClick({ id: val.id }) }} id={val.id} disabled={!val.active}>{val.id}</button>
         })}
       </div>
     )
@@ -114,7 +112,6 @@ class App extends Component {
 
   handleButtonClick = (arg) => {
     let { id } = arg
-    console.log('open modal window');
     this.setState({
       activeId: id,
       showDialog: true
@@ -142,22 +139,25 @@ class App extends Component {
   }
 
   renderModal = () => {
-    // console.log('in render modal exectoino', this.state.showDialog);
     return <DialogComponent
       id='AnimationDialog'
       isModal={true}
       header={'Question ' + this.state.activeId}
       showCloseIcon={true}
       animationSettings={this.animationSettings}
-      width='80%'
-      height='80%'
+      width='95%'
+      height='95%'
       ref={defaultDialog => this.defaultDialogInstance = defaultDialog}
       target='#target'
       buttons={this.dlgButton}
       visible={this.state.showDialog}
       beforeClose={() => this.dialogClose()}
     >
-       <span><img src={`${this.state.quiz[this.state.activeId - 1].imagePath}`} width={'100%'} height={'100%'} className='imageStyle' /></span>
+       <span><img src={`${this.state.quiz[this.state.activeId - 1].imagePath}`} 
+      //  width={'100%'} 
+      //  height={'100%'} 
+       style={{maxHeight:'450px',maxWidth:'800px',height:'auto',width:'auto'}}
+       className='imageStyle' /></span>
     </DialogComponent>
   }
 }
